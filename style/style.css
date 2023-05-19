@@ -1,0 +1,22 @@
+.root {
+  font-size: 1.7rem;
+  padding-left: 25vw;
+  padding-right: 25vw;
+}
+.containerWorker {
+  max-width: 25vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
+  gap: 2vw;
+  padding-left: 25%;
+}
+.divWorker {
+  display: grid;
+  padding-left: 25%;
+  padding-top: 5%;
+}
+.btn {
+  margin-top: 2%;
+  margin-left: 57%;
+}
