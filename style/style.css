@@ -10,6 +10,7 @@
   grid-template-rows: 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
   gap: 2vw;
   padding-left: 25%;
+  padding-top: 5%;
 }
 .divWorker {
   display: grid;
