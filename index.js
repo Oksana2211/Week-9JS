@@ -110,13 +110,14 @@ const divTransport = document.querySelector('.divTransport');//основной 
 // divTransport.appendChild(btnTransportCar);
 
 class Transport {
-  constructor(type, brand, doors, price, image) {
+  constructor(type, brand, doors, price, image, maxSpeed) {
 
     this.type = type;
     this.brand = brand;
     this.doors = doors;
     this.price = price;
     this.image = image;
+    this.maxSpeed = maxSpeed;
   }
   getInfo() {
     return `${this.brand}`;
@@ -150,10 +151,11 @@ for (const element of data) {
   let doors = element.doors;
   let price = element.price;
   let img = element.image;
+  let maxSpeed = element.maxSpeed;
 
   class Car extends Transport {
-    constructor(type, brand, doors, price, image) {
-      super("car", brand, doors, price, image);
+    constructor(type, brand, doors, price, image, maxSpeed) {
+      super("car", brand, doors, price, image, maxSpeed);
       this.doorsCount = doors;
     }
 
@@ -168,9 +170,9 @@ for (const element of data) {
   }
 
   class Bike extends Transport {
-    constructor(type, brand, doors, price, image, speed) {
-      super('bike', brand, doors, price, image, speed);
-      this.maxSpeed = speed;
+    constructor(type, brand, doors, price, image, maxSpeed) {
+      super('bike', brand, doors, price, image, maxSpeed);
+      this.maxSpeed = maxSpeed;
     }
 
     getInfo = this.getInfo.bind(this);
@@ -184,7 +186,7 @@ for (const element of data) {
 
 
   if (element.type === "car") {
-    let car = new Car(`${type}`, `${brand}`, `${doors}`, `${price}`, `${img}`);
+    let car = new Car(`${type}`, `${brand}`, `${doors}`, `${price}`, `${img}`, `${maxSpeed}`);
     let carInfo = car.getInfo();
     let carPrice = car.getPrice();
     let carDoors = car.getDoorsCount();
@@ -196,7 +198,7 @@ for (const element of data) {
 
 
   if (element.type === "bike") {
-    let bike = new Bike(`${type}`, `${brand}`, `${doors}`, `${price}`, `${img}`);
+    let bike = new Bike(`${type}`, `${brand}`, `${doors}`, `${price}`, `${img}`, `${maxSpeed}`);
     let bikeInfo = bike.getInfo();
     let bikePrice = bike.getPrice();
     let bikeMaxSpeed = bike.getMaxSpeed();
@@ -205,10 +207,9 @@ for (const element of data) {
     priceTransport.innerHTML += `${bikePrice}`;
     maxSpeedBike.innerHTML += `${bikeMaxSpeed}`;
   }
-
 };
 
-// console.log(Car);
+
 
 
 // btnTransportCar.addEventListener("click", TransportCar);
