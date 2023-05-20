@@ -7,7 +7,7 @@ const btn = document.querySelector('.btn'); // кнопка
 
 const divWorker = document.querySelector('.divWorker'); //основной контейнер для вывода информации
 const nameWorker = document.createElement('span'); // выводим имя
-const surnameWorker = document.createElement('span'); // выводим фамилию 
+const surnameWorker = document.createElement('span'); // выводим фамилию
 const rateWorker = document.createElement('span'); // выводим ставку
 const daysWorker = document.createElement('span'); // выводим кол-во отработанных дней
 const salary = document.createElement('span'); // выводим зарплату
@@ -67,7 +67,222 @@ btn.addEventListener("click", eddWorker);
 
 
 
+const data = [
+  {
+    id: 1,
+    type: 'car',
+    brand: 'Audi',
+    doors: 4,
+    price: 4300000,
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/2020_Audi_e-Tron_Sport_50_Quattro.jpg/1200px-2020_Audi_e-Tron_Sport_50_Quattro.jpg'
+  },
+  {
+    id: 2,
+    type: 'car',
+    brand: 'Mercedes-Benz',
+    doors: 4,
+    price: 2800000,
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/2019_Mercedes-Benz_E220d_SE_Automatic_2.0_Front.jpg/300px-2019_Mercedes-Benz_E220d_SE_Automatic_2.0_Front.jpg'
+  },
+  {
+    id: 3,
+    type: 'bike',
+    brand: 'Harley-Davidson',
+    maxSpeed: 210,
+    price: 1300000,
+    image: 'https://www.harley-davidson.com/content/dam/h-d/images/product-images/bikes/motorcycle/2022/2022-iron-883/2022-iron-883-016/2022-iron-883-016-motorcycle.jpg'
+  },
+  {
+    id: 4,
+    type: 'bike',
+    brand: 'Harley-Davidson',
+    maxSpeed: 220,
+    price: 1400000,
+    image: 'https://cdn.dealerspike.com/imglib/products/harley-showroom/2020/livewire/main/Vivid-Black-Main.png'
+  }
+];
 
+const divTransport = document.querySelector('.divTransport');//основной контейнер для транспорта
+
+// const btnTransport = document.createElement('button'); //кнопка
+// btnTransport.textContent = "Отобразить транспорт";
+
+
+class Transport {
+  constructor(type, brand, doors, price, image) {
+
+    this.type = type;
+    this.brand = brand;
+    this.doors = doors;
+    this.price = price;
+    this.image = image;
+  }
+  getInfo() {
+    return `${this.brand}`;
+  }
+  getPrice() {
+    return `${this.price}`;
+  }
+}
+
+data.forEach((element) => {
+  const imgTransport = document.createElement('img'); // контейнер для фото
+  imgTransport.classList.add('img');
+  const brandTransport = document.createElement('span'); // контейнер для бренда
+  const doorsTransport = document.createElement('span'); // контейнер для кол-ва дверей
+  const priceTransport = document.createElement('span'); // контейнер для цены
+  const doorsCar = document.createElement('span'); // контейнер для вывода кол-ва дверей
+  const maxSpeedBike = document.createElement('span'); // контейнер для вывода макс скорости байка
+
+  divTransport.appendChild(imgTransport);
+  divTransport.appendChild(brandTransport);
+  divTransport.appendChild(doorsTransport);
+  divTransport.appendChild(priceTransport);
+  // divTransport.appendChild(btnTransport);
+  divTransport.appendChild(doorsCar);
+  divTransport.appendChild(maxSpeedBike);
+
+
+  let type = element.type;
+  let brand = element.brand;
+  let doors = element.doors;
+  let price = element.price;
+  let img = element.image;
+
+  if (element.type === "car") {
+    class Car extends Transport {
+      constructor(type, brand, doors, price, image) {
+        super("car", brand, price, image, doors);
+        this.doorsCount = doors;
+      }
+      getInfo = this.getInfo.bind(this);
+      getPrice = this.getPrice.bind(this);
+      getDoorsCount = this.getDoorsCount.bind(this);
+
+      getDoorsCount() {
+        return `Количество дверей: ${this.doorsCount}`;
+      }
+    }
+    let car = new Car(`${price}`, `${brand}`, `${doors}`);
+    let carInfo = car.getInfo();
+    let carPrice = car.getPrice();
+    let carDoors = car.getDoorsCount();
+    imgTransport.src = `${img}`;
+    brandTransport.innerHTML += `${carInfo}`;
+    priceTransport.innerHTML += `${carPrice}`;
+    doorsCar.innerHTML += `${carDoors}`;
+  }
+
+  if (element.type === "bike") {
+    class Bike extends Transport {
+      constructor(type, brand, doors, price, image, maxSpeed) {
+        super('bike', brand, price, image, doors, maxSpeed);
+        this.maxSpeed = speed;
+      }
+
+      getInfo = this.getInfo.bind(this);
+      getPrice = this.getPrice.bind(this);
+      getMaxSpeed = this.getMaxSpeed.bind(this);
+
+      getMaxSpeed() {
+        return `Макс. скорость: ${this.maxSpeed} км/ч`;
+      }
+    }
+    let bike = new Bike(`${price}`, `${brand}`, `${speed}`);
+    let bikeInfo = bike.getInfo();
+    let bikePrice = bike.getPrice();
+    let bikeMaxSpeed = bike.getMaxSpeed();
+    imgTransport.src = `${img}`;
+    brandTransport.innerHTML += `${bikeInfo}`;
+    priceTransport.innerHTML += `${bikePrice}`;
+    maxSpeedBike.innerHTML += `${bikeMaxSpeed}`;
+  }
+
+});
+
+
+
+
+
+
+
+
+// btnTransport.addEventListener("click", getInfo);
+
+
+// class Transport {
+//   constructor(type, price, brand) {
+//     this.type = type;
+//     this.price = price;
+//     this.brand = brand;
+//   }
+
+//   getInfo() {
+//     return `${this.brand}`;
+//   }
+//   getPrice() {
+//     return `${this.price} руб`;
+//   }
+// }
+// let totalStringVDom = " ";
+
+// data.forEach((item) => {
+//   let price = item.price;
+//   let brand = item.brand;
+//   let doors = item.doors;
+//   let speed = item.maxSpeed;
+//   let img = item.image;
+
+//   if (item.type === "car") {
+//     class Car extends Transport {
+//       constructor(price, brand, doors) {
+//         super("car", price, brand, doors);
+//         this.doorsCount = doors;
+//       }
+
+//       getInfo = this.getInfo.bind(this);
+//       getPrice = this.getPrice.bind(this);
+//       getDoorsCount = this.getDoorsCount.bind(this);
+
+//       getDoorsCount() {
+//         return `Количество дверей: ${this.doorsCount}`;
+//       }
+//     }
+//     let car = new Car(`${price}`, `${brand}`, `${doors}`);
+//     let carInfo = car.getInfo();
+//     let carPrice = car.getPrice();
+//     let carDoors = car.getDoorsCount();
+//     totalStringVDom =
+//       totalStringVDom +
+//       `<div class="list_item"><img class="image" src="${img}" alt="car"><div class="item_info">${carInfo}</div><div class="item_price">${carPrice}</div><div class="item_doors">${carDoors}</div></div>`;
+//     document.querySelector(".list").innerHTML = totalStringVDom;
+//   }
+
+//   if (item.type === "bike") {
+//     class Bike extends Transport {
+//       constructor(price, brand, maxSpeed) {
+//         super("bike", price, brand, maxSpeed);
+//         this.maxSpeed = maxSpeed;
+//       }
+
+//       getInfo = this.getInfo.bind(this);
+//       getPrice = this.getPrice.bind(this);
+//       getMaxSpeed = this.getMaxSpeed.bind(this);
+
+//       getMaxSpeed() {
+//         return `Максимальная скорость: ${this.maxSpeed} км/ч`;
+//       }
+//     }
+//     let bike = new Bike(`${price}`, `${brand}`, `${speed}`);
+//     let bikeInfo = bike.getInfo();
+//     let bikePrice = bike.getPrice();
+//     let bikeSpeed = bike.getMaxSpeed();
+//     totalStringVDom =
+//       totalStringVDom +
+//       `<div class="list_item"><img class="image" src="${img}" alt="bike"><div class="item_info">${bikeInfo}</div><div class="item_price">${bikePrice}</div><div class="item_speed">${bikeSpeed}</div></div>`;
+//     document.querySelector(".list").innerHTML = totalStringVDom;
+//   }
+// });
 
 
 
