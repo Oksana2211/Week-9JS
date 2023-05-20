@@ -173,36 +173,32 @@ data.forEach((element) => {
     doorsCar.innerHTML += `${carDoors}`;
   }
 
-  if (element.type === "bike") {
-    class Bike extends Transport {
-      constructor(type, brand, doors, price, image, maxSpeed) {
-        super('bike', brand, price, image, doors, maxSpeed);
-        this.maxSpeed = speed;
-      }
+  // if (element.type === "bike") {
+  //   class Bike extends Transport {
+  //     constructor(type, brand, doors, price, image, maxSpeed) {
+  //       super('bike', brand, price, image, doors, maxSpeed);
+  //       this.maxSpeed = speed;
+  //     }
 
-      getInfo = this.getInfo.bind(this);
-      getPrice = this.getPrice.bind(this);
-      getMaxSpeed = this.getMaxSpeed.bind(this);
+  //     getInfo = this.getInfo.bind(this);
+  //     getPrice = this.getPrice.bind(this);
+  //     getMaxSpeed = this.getMaxSpeed.bind(this);
 
-      getMaxSpeed() {
-        return `Макс. скорость: ${this.maxSpeed} км/ч`;
-      }
-    }
-    let bike = new Bike(`${price}`, `${brand}`, `${speed}`);
-    let bikeInfo = bike.getInfo();
-    let bikePrice = bike.getPrice();
-    let bikeMaxSpeed = bike.getMaxSpeed();
-    imgTransport.src = `${img}`;
-    brandTransport.innerHTML += `${bikeInfo}`;
-    priceTransport.innerHTML += `${bikePrice}`;
-    maxSpeedBike.innerHTML += `${bikeMaxSpeed}`;
-  }
+  //     getMaxSpeed() {
+  //       return `Макс. скорость: ${this.maxSpeed} км/ч`;
+  //     }
+  //   }
+  //   let bike = new Bike(`${price}`, `${brand}`, `${speed}`);
+  //   let bikeInfo = bike.getInfo();
+  //   let bikePrice = bike.getPrice();
+  //   let bikeMaxSpeed = bike.getMaxSpeed();
+  //   imgTransport.src = `${img}`;
+  //   brandTransport.innerHTML += `${bikeInfo}`;
+  //   priceTransport.innerHTML += `${bikePrice}`;
+  //   maxSpeedBike.innerHTML += `${bikeMaxSpeed}`;
+  // }
 
 });
-
-
-
-
 
 
 
@@ -210,79 +206,6 @@ data.forEach((element) => {
 // btnTransport.addEventListener("click", getInfo);
 
 
-// class Transport {
-//   constructor(type, price, brand) {
-//     this.type = type;
-//     this.price = price;
-//     this.brand = brand;
-//   }
-
-//   getInfo() {
-//     return `${this.brand}`;
-//   }
-//   getPrice() {
-//     return `${this.price} руб`;
-//   }
-// }
-// let totalStringVDom = " ";
-
-// data.forEach((item) => {
-//   let price = item.price;
-//   let brand = item.brand;
-//   let doors = item.doors;
-//   let speed = item.maxSpeed;
-//   let img = item.image;
-
-//   if (item.type === "car") {
-//     class Car extends Transport {
-//       constructor(price, brand, doors) {
-//         super("car", price, brand, doors);
-//         this.doorsCount = doors;
-//       }
-
-//       getInfo = this.getInfo.bind(this);
-//       getPrice = this.getPrice.bind(this);
-//       getDoorsCount = this.getDoorsCount.bind(this);
-
-//       getDoorsCount() {
-//         return `Количество дверей: ${this.doorsCount}`;
-//       }
-//     }
-//     let car = new Car(`${price}`, `${brand}`, `${doors}`);
-//     let carInfo = car.getInfo();
-//     let carPrice = car.getPrice();
-//     let carDoors = car.getDoorsCount();
-//     totalStringVDom =
-//       totalStringVDom +
-//       `<div class="list_item"><img class="image" src="${img}" alt="car"><div class="item_info">${carInfo}</div><div class="item_price">${carPrice}</div><div class="item_doors">${carDoors}</div></div>`;
-//     document.querySelector(".list").innerHTML = totalStringVDom;
-//   }
-
-//   if (item.type === "bike") {
-//     class Bike extends Transport {
-//       constructor(price, brand, maxSpeed) {
-//         super("bike", price, brand, maxSpeed);
-//         this.maxSpeed = maxSpeed;
-//       }
-
-//       getInfo = this.getInfo.bind(this);
-//       getPrice = this.getPrice.bind(this);
-//       getMaxSpeed = this.getMaxSpeed.bind(this);
-
-//       getMaxSpeed() {
-//         return `Максимальная скорость: ${this.maxSpeed} км/ч`;
-//       }
-//     }
-//     let bike = new Bike(`${price}`, `${brand}`, `${speed}`);
-//     let bikeInfo = bike.getInfo();
-//     let bikePrice = bike.getPrice();
-//     let bikeSpeed = bike.getMaxSpeed();
-//     totalStringVDom =
-//       totalStringVDom +
-//       `<div class="list_item"><img class="image" src="${img}" alt="bike"><div class="item_info">${bikeInfo}</div><div class="item_price">${bikePrice}</div><div class="item_speed">${bikeSpeed}</div></div>`;
-//     document.querySelector(".list").innerHTML = totalStringVDom;
-//   }
-// });
 
 
 
