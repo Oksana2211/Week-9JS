@@ -1,3 +1,5 @@
+/////////////// Практическое задание № 1//////////////////////////////////////////
+
 const nameW = document.querySelector('input[name="name"]'); // поле ввода для имени
 const surnameW = document.querySelector('input[name="surname"]'); // поле ввода для фамилии
 const rateW = document.querySelector('input[name="rate"]'); // поле ввода ставки
@@ -55,17 +57,7 @@ btn.addEventListener("click", eddWorker);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+/////////////// Практическое задание № 2//////////////////////////////////////////
 
 const data = [
   {
@@ -103,11 +95,12 @@ const data = [
 ];
 
 const divTransport = document.querySelector('.divTransport');//основной контейнер для транспорта
-// divTransport.innerHTML += "";
 
-// const btnTransportCar = document.createElement('button'); //кнопка для вывода машин
-// btnTransportCar.textContent = "Машины";
-// divTransport.appendChild(btnTransportCar);
+
+const btnTransportCar = document.createElement('button'); //кнопка для вывода машин
+btnTransportCar.textContent = "Хиты продаж";
+btnTransportCar.classList.add("btn2");
+divTransport.appendChild(btnTransportCar);
 
 class Transport {
   constructor(type, brand, doors, price, image, maxSpeed) {
@@ -120,99 +113,98 @@ class Transport {
     this.maxSpeed = maxSpeed;
   }
   getInfo() {
-    return `${this.brand}`;
+    return `Бренд: ${this.brand}`;
   }
   getPrice() {
-    return `${this.price} р.`;
+    return `Цена: ${this.price} р.`;
   }
 }
 
-// function TransportCar() {
-for (const element of data) {
-  const imgTransport = document.createElement('img'); // контейнер для фото
-  imgTransport.classList.add('img');
-  const brandTransport = document.createElement('span'); // контейнер для бренда
-  const doorsTransport = document.createElement('span'); // контейнер для кол-ва дверей
-  const priceTransport = document.createElement('span'); // контейнер для цены
-  const doorsCar = document.createElement('span'); // контейнер для вывода кол-ва дверей
-  const maxSpeedBike = document.createElement('span'); // контейнер для вывода макс скорости байка
+function TransportCar() {
 
-  divTransport.appendChild(imgTransport);
-  divTransport.appendChild(brandTransport);
-  divTransport.appendChild(doorsTransport);
-  divTransport.appendChild(priceTransport);
+  for (const element of data) {
+    const imgTransport = document.createElement('img'); // контейнер для фото
+    imgTransport.classList.add('img');
+    const brandTransport = document.createElement('span'); // контейнер для бренда
+    const doorsTransport = document.createElement('span'); // контейнер для кол-ва дверей
+    const priceTransport = document.createElement('span'); // контейнер для цены
+    const doorsCar = document.createElement('span'); // контейнер для вывода кол-ва дверей
+    const maxSpeedBike = document.createElement('span'); // контейнер для вывода макс скорости байка
 
-  divTransport.appendChild(doorsCar);
-  divTransport.appendChild(maxSpeedBike);
+    divTransport.appendChild(imgTransport);
+    divTransport.appendChild(brandTransport);
+    divTransport.appendChild(doorsTransport);
+    divTransport.appendChild(priceTransport);
+
+    divTransport.appendChild(doorsCar);
+    divTransport.appendChild(maxSpeedBike);
 
 
-  let type = element.type;
-  let brand = element.brand;
-  let doors = element.doors;
-  let price = element.price;
-  let img = element.image;
-  let maxSpeed = element.maxSpeed;
+    let type = element.type;
+    let brand = element.brand;
+    let doors = element.doors;
+    let price = element.price;
+    let img = element.image;
+    let maxSpeed = element.maxSpeed;
 
-  class Car extends Transport {
-    constructor(type, brand, doors, price, image, maxSpeed) {
-      super("car", brand, doors, price, image, maxSpeed);
-      this.doorsCount = doors;
+    class Car extends Transport {
+      constructor(type, brand, doors, price, image, maxSpeed) {
+        super("car", brand, doors, price, image, maxSpeed);
+        this.doorsCount = doors;
+      }
+
+
+      getInfo = this.getInfo.bind(this);
+      getPrice = this.getPrice.bind(this);
+      getDoorsCount = this.getDoorsCount.bind(this);
+
+      getDoorsCount() {
+        return `Количество дверей: ${this.doorsCount}`;
+      }
+    }
+
+    class Bike extends Transport {
+      constructor(type, brand, doors, price, image, maxSpeed) {
+        super('bike', brand, doors, price, image, maxSpeed);
+        this.maxSpeed = maxSpeed;
+      }
+
+      getInfo = this.getInfo.bind(this);
+      getPrice = this.getPrice.bind(this);
+      getMaxSpeed = this.getMaxSpeed.bind(this);
+
+      getMaxSpeed() {
+        return `Макс. скорость: ${this.maxSpeed} км/ч`;
+      }
+    }
+    if (element.type === "car") {
+      let car = new Car(`${type}`, `${brand}`, `${doors}`, `${price}`, `${img}`, `${maxSpeed}`);
+      let carInfo = car.getInfo();
+      let carPrice = car.getPrice();
+      let carDoors = car.getDoorsCount();
+      imgTransport.src = `${img}`;
+      brandTransport.innerHTML += `${carInfo}`;
+      priceTransport.innerHTML += `${carPrice}`;
+      doorsCar.innerHTML += `${carDoors}`;
     }
 
 
-    getInfo = this.getInfo.bind(this);
-    getPrice = this.getPrice.bind(this);
-    getDoorsCount = this.getDoorsCount.bind(this);
-
-    getDoorsCount() {
-      return `Количество дверей: ${this.doorsCount}`;
-    }
-  }
-
-  class Bike extends Transport {
-    constructor(type, brand, doors, price, image, maxSpeed) {
-      super('bike', brand, doors, price, image, maxSpeed);
-      this.maxSpeed = maxSpeed;
+    if (element.type === "bike") {
+      let bike = new Bike(`${type}`, `${brand}`, `${doors}`, `${price}`, `${img}`, `${maxSpeed}`);
+      let bikeInfo = bike.getInfo();
+      let bikePrice = bike.getPrice();
+      let bikeMaxSpeed = bike.getMaxSpeed();
+      imgTransport.src = `${img}`;
+      brandTransport.innerHTML += `${bikeInfo}`;
+      priceTransport.innerHTML += `${bikePrice}`;
+      maxSpeedBike.innerHTML += `${bikeMaxSpeed}`;
     }
 
-    getInfo = this.getInfo.bind(this);
-    getPrice = this.getPrice.bind(this);
-    getMaxSpeed = this.getMaxSpeed.bind(this);
-
-    getMaxSpeed() {
-      return `Макс. скорость: ${this.maxSpeed} км/ч`;
-    }
   }
+}
 
-
-  if (element.type === "car") {
-    let car = new Car(`${type}`, `${brand}`, `${doors}`, `${price}`, `${img}`, `${maxSpeed}`);
-    let carInfo = car.getInfo();
-    let carPrice = car.getPrice();
-    let carDoors = car.getDoorsCount();
-    imgTransport.src = `${img}`;
-    brandTransport.innerHTML += `${carInfo}`;
-    priceTransport.innerHTML += `${carPrice}`;
-    doorsCar.innerHTML += `${carDoors}`;
-  }
-
-
-  if (element.type === "bike") {
-    let bike = new Bike(`${type}`, `${brand}`, `${doors}`, `${price}`, `${img}`, `${maxSpeed}`);
-    let bikeInfo = bike.getInfo();
-    let bikePrice = bike.getPrice();
-    let bikeMaxSpeed = bike.getMaxSpeed();
-    imgTransport.src = `${img}`;
-    brandTransport.innerHTML += `${bikeInfo}`;
-    priceTransport.innerHTML += `${bikePrice}`;
-    maxSpeedBike.innerHTML += `${bikeMaxSpeed}`;
-  }
-};
+btnTransportCar.addEventListener('click', TransportCar);
 
 
 
-
-// btnTransportCar.addEventListener("click", TransportCar);
-
-// function TransportBike() {}
 

@@ -2,6 +2,7 @@
   font-size: 1.7rem;
   padding-left: 25vw;
   padding-right: 25vw;
+  padding-bottom: 5%;
 }
 .containerWorker {
   max-width: 25vw;
@@ -19,11 +20,34 @@
 }
 .btn {
   margin-top: 2%;
-  margin-left: 57%;
 }
 .divTransport {
   display: grid;
+  gap: 1vw;
 }
 .img {
   max-width: 18vw;
 }
+.btn2 {
+  display: inline-block;
+  justify-self: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  width: 25vw;
+  height: 3vw;
+  font-size: 2rem;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #ffffff;
+  background-color: #da6e5b;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #fae5e5;
+}
+.btn2:hover {background-color: #f5adad}
+.btn2:active {
+  background-color: #f3856a;
+  box-shadow: 0 5px #ffe5e5;
+  transform: translateY(4px);}
