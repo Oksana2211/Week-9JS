@@ -28,6 +28,9 @@
 .img {
   max-width: 18vw;
 }
+.img1 {
+  width: 15vw;
+}
 .btn2 {
   display: inline-block;
   justify-self: center;

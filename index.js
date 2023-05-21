@@ -51,6 +51,8 @@ function eddWorker() {
 
   let worker1 = new Worker(nameW.value, surnameW.value, rateW.value, daysW.value);
   worker1.getSalary();
+
+  btn.disabled = "true";
 }
 
 btn.addEventListener("click", eddWorker);
@@ -200,6 +202,7 @@ function TransportCar() {
       maxSpeedBike.innerHTML += `${bikeMaxSpeed}`;
     }
 
+    btnTransportCar.disabled = "true";
   }
 }
 
