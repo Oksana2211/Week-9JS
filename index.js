@@ -180,7 +180,7 @@ function TransportCar() {
       }
     }
     if (element.type === "car") {
-      let car = new Car(`${type}`, `${brand}`, `${doors}`, `${price}`, `${img}`, `${maxSpeed}`);
+      let car = new Car(type, brand, doors, price, img, maxSpeed);
       let carInfo = car.getInfo();
       let carPrice = car.getPrice();
       let carDoors = car.getDoorsCount();
@@ -192,7 +192,7 @@ function TransportCar() {
 
 
     if (element.type === "bike") {
-      let bike = new Bike(`${type}`, `${brand}`, `${doors}`, `${price}`, `${img}`, `${maxSpeed}`);
+      let bike = new Bike(type, brand, doors, price, img, maxSpeed);
       let bikeInfo = bike.getInfo();
       let bikePrice = bike.getPrice();
       let bikeMaxSpeed = bike.getMaxSpeed();
